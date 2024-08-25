@@ -7,8 +7,36 @@
 -<b>Java</b> <i>20.0.2</i>
 
 -<b>MySql</b> <i>8.0</i>
+
 # Assumptions
 - There cannot only be only poll active at the time
+- Polls have an end time
 
+# API Endpoint
+-<b>POST</b> <i>{host address}</i>/v1/question/
+
+Request Body
+```json
+Example
+{
+    "question": "Which team will win Euro 2024?",
+    "endDate" : "2024-08-25T21:45:00.000+00:00",
+    "listOfOptionsInput" : [
+        "England",
+        "France",
+        "Germany",
+        "Portugal",
+        "Spain",
+        "Italy",
+        "Other"
+    ]
+}
+```
+
+-<b>GET</b> <i>{host address}</i>/v1/question/active
+
+-<b>POST</b> <i>{host address}</i>/v1/vote?answerId={id}
+
+-<b>GET</b> <i>{host address}</i>/v1/question/votes?pollId={pollId}
 # Design decisions
 <b>Database</b>:

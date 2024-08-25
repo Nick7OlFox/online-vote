@@ -4,7 +4,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import com.exercise.polling_backend.constants.SystemEnvConst;
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,8 +32,7 @@ public class Question {
     @Column(name = "question")
     private String question;
     @Column(name = "end_time")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Timestamp  endDate;
+    private Timestamp endDate;
     @Column(name = "is_active")
     private Boolean isActive;
 

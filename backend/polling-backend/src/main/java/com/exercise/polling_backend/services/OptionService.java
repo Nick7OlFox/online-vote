@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.exercise.polling_backend.dto.Option;
 import com.exercise.polling_backend.dto.Question;
 import com.exercise.polling_backend.repositories.OptionRepository;
+import com.exercise.polling_backend.repositories.VoteRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +19,7 @@ import lombok.extern.slf4j.Slf4j;
 public class OptionService {
 
     OptionRepository optionRepository;
+    VoteRepository voteRepository;
 
     /**
      * Service method to create all the necessary options for any given question
@@ -47,10 +49,45 @@ public class OptionService {
         }
     }
 
+    /**
+     * Method to get list of option for a given question
+     * 
+     * @param question Obejct of the question
+     * @return
+     */
     public List<Option> getQuestionOptions(Question question) {
         try {
             log.info(String.format("Getting options for question \"%s\"", question.getQuestion()));
-            return optionRepository.findQuestionOptions(question.getId());
+            List<Option> listOfOptions = optionRepository.findQuestionOptions(question.getId());
+
+            for (Option option : listOfOptions) {
+                option.setNumberOfVotes(voteRepository.findAnswerCount(option.getId()));
+            }
+
+            return listOfOptions;
+        } catch (Exception e) {
+            log.warn("An error orccured when trying to create the question");
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    /**
+     * Method to get list of option for a given question
+     * 
+     * @param pollId Integer of the ID
+     * @return
+     */
+    public List<Option> getQuestionOptions(Integer pollId) {
+        try {
+            log.info(String.format("Getting options for question with ID \"%s\"", pollId));
+            List<Option> listOfOptions = optionRepository.findQuestionOptions(pollId);
+
+            for (Option option : listOfOptions) {
+                option.setNumberOfVotes(voteRepository.findAnswerCount(option.getId()));
+            }
+
+            return listOfOptions;
         } catch (Exception e) {
             log.warn("An error orccured when trying to create the question");
             e.printStackTrace();

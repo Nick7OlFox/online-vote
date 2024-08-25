@@ -8,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -30,8 +31,12 @@ public class Option {
     @Column(name = "text")
     private String text;
 
+    @Transient
+    private Integer numberOfVotes;
+
     /**
      * Constructor without id
+     * 
      * @param poll
      * @param text
      */
@@ -40,5 +45,4 @@ public class Option {
         this.text = text;
     }
 
-    
 }
