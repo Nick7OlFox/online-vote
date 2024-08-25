@@ -39,4 +39,4 @@ Example
 
 -<b>GET</b> <i>{host address}</i>/v1/question/votes?pollId={pollId}
 # Design decisions
-<b>Database</b>: For this coding exercise I utilised a local MySQL database. This was done to simplify the database development. Another option considered but not pursued for the sake of time was utilising a service such as AWS RDS. This would have been a good idea if the application were to be deployed in a AWS environment.
+<b>Database</b>: For this coding exercise I utilised a local MySQL database. This was done to simplify the database development as this is something I've used extensively in the past. Another option considered but not pursued for the sake of time was utilising a service such as AWS RDS. This would have been a good idea if the application were to be deployed in a AWS environment.
