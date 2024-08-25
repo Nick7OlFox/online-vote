@@ -1,11 +1,14 @@
 package com.exercise.polling_backend.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-import com.exercise.polling_backend.dto.QuestionTable;
+import com.exercise.polling_backend.dto.Question;
 
-public interface QuestionRepository extends JpaRepository<QuestionTable, Integer>{
+public interface QuestionRepository extends JpaRepository<Question, Integer> {
 
-    // @Query("SELECT * FROM questions WHERE is_active = true")
-    // List<QuestionTable> findByIsActiveTrue();
+    @Query("SELECT q FROM Question q WHERE q.isActive = true")
+    List<Question> findActive();
 }

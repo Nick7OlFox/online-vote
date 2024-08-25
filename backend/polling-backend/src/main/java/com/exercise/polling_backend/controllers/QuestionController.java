@@ -1,5 +1,7 @@
 package com.exercise.polling_backend.controllers;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -7,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.exercise.polling_backend.constants.SystemEnvConst;
-import com.exercise.polling_backend.dto.QuestionTable;
+import com.exercise.polling_backend.dto.Question;
 import com.exercise.polling_backend.services.QuestionService;
 
 import lombok.AllArgsConstructor;
@@ -22,14 +24,20 @@ public class QuestionController {
 
     QuestionService questionService;
 
+    /**
+     * Controller method to catch the request to create a question and return the created question
+     * @param question
+     * @return
+     */
     @PostMapping("/")
-    public QuestionTable createQuestion(@RequestBody QuestionTable question) {
+    public ResponseEntity<?> createQuestion(@RequestBody Question question) {
         log.info("Request to create a new question recieved");
         try {
-            return questionService.createQuestion(question);
+            question = questionService.createQuestion(question);
+            return ResponseEntity.status(HttpStatus.OK).body(question);
         } catch (Exception e) {
             e.printStackTrace();
-            throw e;
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
 

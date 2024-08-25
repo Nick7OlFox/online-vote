@@ -1,9 +1,6 @@
 package com.exercise.polling_backend.dto;
 
-import java.sql.Timestamp;
-import java.util.List;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.exercise.polling_backend.constants.SystemEnvConst;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -11,7 +8,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.persistence.Transient;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,21 +18,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 @Data
-@Table(name = "questions")
-public class QuestionTable {
+@Table(name = SystemEnvConst.OPTIONS_TABLE_NAME)
+public class Option {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    @Column(name = "question")
-    private String question;
-    @Column(name = "end_time")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    private Timestamp  endDate;
-    @Column(name = "is_active")
-    private Boolean isActive;
+    @Column(name = "poll")
+    private Integer poll;
+    @Column(name = "text")
+    private String text;
 
-    @Transient
-    private List<String> listOfOptions;
+    /**
+     * Constructor without id
+     * @param poll
+     * @param text
+     */
+    public Option(Integer poll, String text) {
+        this.poll = poll;
+        this.text = text;
+    }
+
+    
 }

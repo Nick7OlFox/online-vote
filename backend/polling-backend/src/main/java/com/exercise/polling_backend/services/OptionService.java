@@ -5,8 +5,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.exercise.polling_backend.dto.OptionTable;
-import com.exercise.polling_backend.dto.QuestionTable;
+import com.exercise.polling_backend.dto.Option;
+import com.exercise.polling_backend.dto.Question;
 import com.exercise.polling_backend.repositories.OptionRepository;
 
 import lombok.AllArgsConstructor;
@@ -19,17 +19,30 @@ public class OptionService {
 
     OptionRepository optionRepository;
 
-    public void createOptions(QuestionTable question) {
+    /**
+     * Service method to create all the necessary options for any given question
+     * @param question The question object with the options to be created
+     */
+    public void createOptions(Question question) {
         try {
-            List<OptionTable> listOfOptions = new ArrayList<OptionTable>();
-            for (String option : question.getListOfOptions()) {
-                listOfOptions.add(new OptionTable(question.getId(), option));
-            }
+            List<Option> listOfOptions = new ArrayList<Option>();
+
+            // Create options based on request
+            for (String text : question.getListOfOptionsInput()) 
+                listOfOptions.add(new Option(question.getId(), text));
+            
+            // Save all options to the database
             optionRepository.saveAll(listOfOptions);
+            question.setListOfOptions(listOfOptions);
+
+            // Clear input
+            question.setListOfOptionsInput(null);
+            
             log.info("Options created");
         } catch (Exception e) {
             log.warn("An error orccured when trying to create the question");
             e.printStackTrace();
+            throw e;
         }
     }
 }
