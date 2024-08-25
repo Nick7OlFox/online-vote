@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: polling-backend
+  datasource:
+    url: jdbc:mysql://localhost:3306/polling-db
+    username: pollUser
+    password: c0dingT3st
+
+server:
+  port: 8080
+  servlet:
+    context-path: /poll
+  shutdown: graceful
+
+logging:
+  file:
+    name: logs/trace.log
