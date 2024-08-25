@@ -3,6 +3,7 @@ package com.exercise.polling_backend.controllers;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,4 +42,19 @@ public class QuestionController {
         }
     }
 
+    /**
+     * Controller method to get the currently active question
+     * @return
+     */
+    @GetMapping("/active")
+    public ResponseEntity<?> getActiveQuestion(){
+        log.info("Request to retrieve the currently active question recieved");
+        try{
+            Question question = questionService.getActiveQuestion();
+            return ResponseEntity.status(HttpStatus.OK).body(question);
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }

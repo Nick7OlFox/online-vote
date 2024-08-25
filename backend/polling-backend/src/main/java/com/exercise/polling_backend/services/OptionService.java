@@ -21,6 +21,7 @@ public class OptionService {
 
     /**
      * Service method to create all the necessary options for any given question
+     * 
      * @param question The question object with the options to be created
      */
     public void createOptions(Question question) {
@@ -28,17 +29,28 @@ public class OptionService {
             List<Option> listOfOptions = new ArrayList<Option>();
 
             // Create options based on request
-            for (String text : question.getListOfOptionsInput()) 
+            for (String text : question.getListOfOptionsInput())
                 listOfOptions.add(new Option(question.getId(), text));
-            
+
             // Save all options to the database
             optionRepository.saveAll(listOfOptions);
             question.setListOfOptions(listOfOptions);
 
             // Clear input
             question.setListOfOptionsInput(null);
-            
+
             log.info("Options created");
+        } catch (Exception e) {
+            log.warn("An error orccured when trying to create the question");
+            e.printStackTrace();
+            throw e;
+        }
+    }
+
+    public List<Option> getQuestionOptions(Question question) {
+        try {
+            log.info(String.format("Getting options for question \"%s\"", question.getQuestion()));
+            return optionRepository.findQuestionOptions(question.getId());
         } catch (Exception e) {
             log.warn("An error orccured when trying to create the question");
             e.printStackTrace();

@@ -73,4 +73,39 @@ public class QuestionService {
             throw e;
         }
     }
+
+    /**
+     * Service layer method to retrieve the currently active question
+     * @return
+     * @throws Exception 
+     */
+    public Question getActiveQuestion() throws Exception {
+        try{
+            List<Question> list = questionRepository.findActive();
+            
+            // Error handling
+            // No active question
+            if (list.size() == 0) {
+                log.warn("No active question found");
+                throw new Exception("No question is currently active");
+            }
+            // More than one active question
+            if(list.size() > 1){
+                log.warn("More than one active question was retrieved. Error thrown");
+                throw new Exception("More than one question is active at the present time. Please contact an administrator to fix the issue");
+            }
+
+            Question question = list.get(0);
+
+            // Get question options
+            question.setListOfOptions(optionService.getQuestionOptions(question));
+
+            // Return the only item on the list
+            return list.get(0);
+        } catch (Exception e){
+            log.warn("An error orccured when trying to create the question");
+            e.printStackTrace();
+            throw e;
+        }
+    }
 }
