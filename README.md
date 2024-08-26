@@ -1,5 +1,15 @@
-# online-vote
+# Bruno Faria Almeida - coding exercise
 ## How to run the code
+Ensure you have the correct software installed
+### Setup the database
+Import the Data in the file <i>/data/<b>dbConfig.sql</b></i> into mySql workspace. (The code was configured to expect the db to be hosted on localhost:3306. Make sure this is the case or if you have a different port update the file <i>/backend/polling-backend/src/main/resources/<b>application.yml</b></i>)
+
+### Running the code
+When the database is successfully configured, you can now simply run the code. There are two projects you need to run.
+#### Backend
+To run the backend you must run the file <i>/backend/polling-backend/src/main/java/com/exercise/polling_backend/<b>PollingBackendApplication.java</b></i>. This will start a spring boot project. If for any reason this is not working, make sure you reload your Maven dependencies and try again.
+#### Frontend
+To run the frontend open a terminal and navigate to <i>/frontend/pollingApp</i>. When here run the command <b>ng serve</b>. This should start the angular project. If this is not working, try running <b>npm install -g @angular/cli</b> and then run the command <b>ng serve</b> again.
 
 # Tech stack
 -<b>Node.js</b> <i>20.1.0</i>
@@ -8,11 +18,11 @@
 
 -<b>MySql</b> <i>8.0</i>
 
-# Assumptions
+## Assumptions
 - There cannot only be only poll active at the time
 - Polls can have an end time
 
-# API Endpoint
+## API Endpoint
 -<b>POST</b> <i>{host address}</i>/v1/question/
 
 Request Body
@@ -38,5 +48,5 @@ Example
 -<b>POST</b> <i>{host address}</i>/v1/vote?answerId={id}
 
 -<b>GET</b> <i>{host address}</i>/v1/question/votes?pollId={pollId}
-# Design decisions
+## Design decisions
 <b>Database</b>: For this coding exercise I utilised a local MySQL database. This was done to simplify the database development as this is something I've used extensively in the past. Another option considered but not pursued for the sake of time was utilising a service such as AWS RDS. This would have been a good idea if the application were to be deployed in a AWS environment.
