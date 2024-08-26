@@ -1,11 +1,10 @@
-body {
-    background-color: blueviolet;
-    height: 100%;
-    margin: 0;
-    overflow: hidden;
-}
+@import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");    
 
-div{
+body {
+    background-color: blueviolet !important;
+    height: 100%;
+    margin: 0 !important;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;

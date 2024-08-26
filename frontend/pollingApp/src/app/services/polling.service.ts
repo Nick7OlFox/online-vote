@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { globals } from '../app.component';
-import { response } from 'express';
-import { log } from 'console';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +9,9 @@ import { log } from 'console';
 export class PollingService {
 
   questionPath: string = "/v1/question";
+  votePath: string = "/v1/vote"
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   getCurrentQuestion() {
     let processName = "getCurrentQuestion"
@@ -20,14 +20,38 @@ export class PollingService {
       (response) => {
         console.log(response);
         globals.message = response.question;
+        globals.options = new Array<any>();
+        response.listOfOptions.forEach((element: any) => {
+          globals.options?.push(element);
+        });
+        console.log(globals.options);
+
         globals.stopProcess(processName);
       },
       (error) => {
         // TODO implement error
         console.log(error);
-        
+
         globals.message = error.error;
-        globals.error = true;
+        this.router.navigate(['error']);
+        globals.stopProcess(processName);
+      }
+    )
+  }
+
+  voteOnOption(optionId: Number) {
+    let processName = "voteOnOption"
+    globals.startProcess(processName);
+    const params = {};
+    this.http.post<any>(globals.baseUrl + this.votePath + "?answerId=" + optionId, params).subscribe(
+      (response) => {
+        console.log(response);
+        globals.stopProcess(processName);
+      },
+      (error) => {
+        console.log(error);
+        globals.message = error.error;
+        this.router.navigate(['error']);
         globals.stopProcess(processName);
       }
     )

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PollingService } from './services/polling.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +11,10 @@ export class AppComponent implements OnInit{
   title = 'pollingApp';
   public globals: GlobalVariables = globals;
 
-  constructor(private pollingService: PollingService){}
+  constructor(private pollingService: PollingService, private router : Router){}
   ngOnInit(): void {
+    // Navigate to the root path on application refresh
+    this.router.navigate(['']);
     this.pollingService.getCurrentQuestion();
   }
 }
