@@ -1,7 +1,7 @@
 @import url("../node_modules/bootstrap/dist/css/bootstrap.min.css");    
 
 body {
-    background-color: blueviolet !important;
+    background-image: url("../assets/bg.png");
     height: 100%;
     margin: 0 !important;
     overflow: hidden;

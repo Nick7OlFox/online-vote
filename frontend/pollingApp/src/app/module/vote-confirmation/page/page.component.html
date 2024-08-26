@@ -1,4 +1,8 @@
-<p>Your vote has been registered. Thank you for participating</p>
-
-<button class="btn btn-lg btn-outline-light" type="button"
-        routerLink="/results" (click)="reloadQuestion()">View Results</button>
+<div class="alert confirmation-box" role="alert">
+        <h4 class="alert-heading">Vote Registered!</h4>
+        <p>Thank you for participating in this poll.</p>
+        <hr>
+        <p class="mb-0">If you wish to view the current results, press the button bellow:</p>
+        <button class="btn btn-lg btn-outline-light mt-2" type="button" routerLink="/results" (click)="reloadQuestion()">View
+                Results</button>
+</div>
