@@ -1,0 +1,11 @@
+<div *ngIf="!globals.isLoading">
+  <div *ngIf="!globals.error">
+    <app-present-question></app-present-question>
+  </div>
+  <div *ngIf="globals.error">
+    <app-error-screen></app-error-screen>
+  </div>
+</div>
+<div *ngIf="globals.isLoading">
+  <app-loading-screen></app-loading-screen>
+</div>

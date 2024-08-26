@@ -10,7 +10,7 @@
 
 # Assumptions
 - There cannot only be only poll active at the time
-- Polls have an end time
+- Polls can have an end time
 
 # API Endpoint
 -<b>POST</b> <i>{host address}</i>/v1/question/
