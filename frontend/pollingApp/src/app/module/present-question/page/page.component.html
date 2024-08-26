@@ -1,5 +1,5 @@
 <p>{{message}}</p>
 <div class="d-grid gap-2">
-    <button class="btn btn-lg btn-outline-light" type="button" *ngFor="let option of options;"
-        routerLink="voted" (click)="voteForOption(option.id)">{{option.text}}</button>
+    <button class="btn btn-lg btn-outline-light" type="button" *ngFor="let option of options;" routerLink="voted"
+        (click)="voteForOption(option.id)">{{option.text}}</button>
 </div>

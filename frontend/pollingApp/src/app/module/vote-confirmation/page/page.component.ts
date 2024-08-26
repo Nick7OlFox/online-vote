@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PollingService } from '../../../services/polling.service';
 
 @Component({
   selector: 'app-page',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class PageComponent {
 
+  constructor(private pollingService: PollingService) { }
+  reloadQuestion() {
+    this.pollingService.getCurrentQuestion();
+  }
 }

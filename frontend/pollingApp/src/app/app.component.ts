@@ -25,7 +25,7 @@ export interface GlobalVariables {
   isLoading: boolean;
   baseUrl: String;
   message?: String;
-  options?: Array<any>; // Change to options
+  options?: Array<any>;
   error: boolean;
   ongoingProcesses: Array<String>;
   startProcess(process: String): void;

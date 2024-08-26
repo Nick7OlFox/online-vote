@@ -11,10 +11,9 @@ export class PageComponent {
   message = globals.message;
   options = globals.options;
 
-  constructor(private pollingService: PollingService){}
+  constructor(private pollingService: PollingService) { }
 
   public voteForOption(optionId: Number) {
-    console.log(optionId);
     this.pollingService.voteOnOption(optionId);
   }
 }

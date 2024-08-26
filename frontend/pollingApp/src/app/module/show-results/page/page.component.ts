@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { globals } from '../../../app.component';
 
 @Component({
   selector: 'app-page',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './page.component.css'
 })
 export class PageComponent {
-
+  message = globals.message;
+  options = globals.options;
 }
