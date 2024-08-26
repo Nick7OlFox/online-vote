@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { globals } from '../../app.component';
 
 @Component({
   selector: 'app-present-question',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './present-question.component.css'
 })
 export class PresentQuestionComponent {
-
+  message = globals.message;
 }

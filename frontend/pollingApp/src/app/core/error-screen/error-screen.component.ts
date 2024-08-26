@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { globals } from '../../app.component';
 
 @Component({
   selector: 'app-error-screen',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './error-screen.component.css'
 })
 export class ErrorScreenComponent {
-
+  errorMessage = globals.message;
 }
