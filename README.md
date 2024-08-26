@@ -52,3 +52,7 @@ Example
 <b>Database</b>: For this coding exercise I utilised a local MySQL database. This was done to simplify the database development as this is something I've used extensively in the past. Another option considered but not pursued for the sake of time was utilising a service such as AWS RDS. This would have been a good idea if the application were to be deployed in a AWS environment.
 
 ## Testing
+#### Frontend
+In the repository we can find the file <i>/testing/frontend/<b>coding exercise.side</b></i>. This file contains one test case for the frontend where the user votes for the first option in a valid poll. This is an example of using the Selenium IDE browser extension to record a test case for testing the frontend of the application.
+#### Backend
+To test the several endpoints, Postman was used where all request could be sent and tested to ensure correct behaviour. In the repository we can find the file <i>/testing/backend/<b>postman-endpoints.json</b></i> where the endpoint collection from postman was saved.
